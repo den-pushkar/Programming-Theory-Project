@@ -27,10 +27,9 @@ public class SpeedPlayer : PlayerController
 
     IEnumerator SpeedBoost()
     {
-        Debug.Log("col");
-        speed *= 5;
+        speed *= 2;
         yield return new WaitForSeconds(3);
-        speed /= 5;
+        speed /= 2;
     }
 
 }
