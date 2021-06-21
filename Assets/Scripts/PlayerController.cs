@@ -5,10 +5,10 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     private Rigidbody playerRb;
-    public GameManager gameManagerScript;
+    public static GameManager gameManagerScript;
     public float speed = 15;
     public float breakTime = 0;
-    public bool isCollieded;
+    public static bool isCollieded;
 
     void Start()
     {
@@ -26,6 +26,14 @@ public class PlayerController : MonoBehaviour
         {
             playerRb.AddForce(Vector3.right * speed);
         }
+        //bounds
+        if (transform.position.x > 9.2f)
+        {
+            playerRb.velocity = Vector3.zero;
+        } else if (transform.position.x < -9.2f)
+        {
+            playerRb.velocity = Vector3.zero;
+        }
     }
 
     public virtual void Firing()
@@ -37,7 +45,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-      void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter(Collision collision)
         {
             if (collision.gameObject.CompareTag("Enemy"))
             {
